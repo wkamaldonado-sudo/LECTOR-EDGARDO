@@ -83,14 +83,20 @@ Attach binaries*.
 README.md                 presentacion y guia rapida
 CHANGELOG.md              1.0 -> 4.0-f7
 docs/                     arquitectura, instalacion, compilacion, OCR, licencias, privacidad
-app/                      codigo fuente Kotlin + recursos + assets del modelo
-gradle/ , gradlew , gradlew.bat
-build.gradle.kts , settings.gradle.kts , gradle.properties
+cambios-voces-2026-11-02/ el arreglo de voz de la 4.0-f7: nota, fuentes y zip
+COMPLETAR-PAQUETE.ps1/.cmd
+SUBIR-A-GITHUB.ps1/.cmd
 .gitignore
 ```
 
 **No** se sube: `apk/` (va en Releases), `build/`, `.gradle/`, `local.properties`,
-`vendor-downloads/` y los APK antiguos de la carpeta de trabajo.
+`vendor-downloads/`, los `.onnx` de los modelos (demasiado pesados para Git) y los APK
+antiguos de la carpeta de trabajo.
+
+El árbol de código completo (`app/`, `gradle/`, `build.gradle.kts`) no está en este
+repositorio: vive en `C:\Users\Antonio\Documents\APK Libro\Lector de Libros`. Si alguna vez
+lo quieres aquí, `COMPLETAR-PAQUETE.cmd -ConCodigo` lo copia, pero los modelos hay que
+dejarlos fuera y publicarlos aparte.
 
 ## 4 · Si quieres el historial de versiones en el repo
 

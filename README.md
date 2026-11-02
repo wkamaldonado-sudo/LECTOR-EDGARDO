@@ -63,6 +63,12 @@ El APK listo para usar está en `apk/`:
 apk/Lector-de-Libros-4.0-f6.apk
 ```
 
+> Este archivo pesa **178,9 MB**, por encima del límite de 100 MB por archivo de GitHub.
+> En el repositorio está ignorado a propósito: al publicar, súbelo como **asset de una
+> Release** (instrucciones en [docs/07-PUBLICAR-EN-GITHUB.md](docs/07-PUBLICAR-EN-GITHUB.md)).
+> Verificado: `versionCode 35` / `versionName 4.0-f6`,
+> SHA-256 `B175B5848539666124B79457F3F2E1FAB2B7FA3936ADEF1102DF159C0A0D3E51`.
+
 **Desde el teléfono:** copia el APK al móvil, ábrelo con el explorador de archivos y acepta
 «Instalar apps desconocidas» si Android lo pide.
 

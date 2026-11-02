@@ -1,0 +1,37 @@
+# Android / Gradle
+.gradle/
+build/
+app/build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.iml
+.idea/
+local.properties
+*.hprof
+
+# APK y artefactos de compilacion
+apk/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+output-metadata.json
+
+# Modelos y descargas pesadas (no versionar)
+vendor-downloads/
+*.tar.bz2
+*.onnx
+voice.bin
+unicode_indexer.bin
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Registros y temporales
+*.log
+*.tmp
+*.bak

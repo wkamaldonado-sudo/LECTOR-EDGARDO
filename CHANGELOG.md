@@ -6,10 +6,37 @@ de firma, así que se instalan **encima** conservando biblioteca, progreso y aju
 
 ---
 
-## 4.0 — serie de mejora (f1 → f6)
+## 4.0 — serie de mejora (f1 → f7)
 
-La serie 4.0 partió de la 3.8 publicada y se entregó en seis pasos verificados, cada uno
+La serie 4.0 partió de la 3.8 publicada y se entregó en pasos verificados, cada uno
 compilado, probado e instalado en el dispositivo antes de pasar al siguiente.
+
+### 4.0-f7 — versionCode 36
+
+Todo el trabajo de esta versión está en la voz integrada (Supertonic), que sonaba
+metálica y con chasquidos al empalmar frases.
+
+- **Pasos de síntesis**: `numSteps` pasa de 5 a 8. Con 5 (el mínimo del motor) el latente
+  no terminaba de limpiarse y quedaba un zumbido metálico pegado a la voz.
+- **Conversión a PCM**: se redondea con `roundToInt()` en vez de truncar hacia cero, lo
+  que añadía distorsión de cuantización en las sílabas.
+- **Uniones sin chasquido**: antes de recortar se mide y se quita la continua de la señal,
+  y las dos puntas se rampan con *smoothstep* (20 ms de subida, 30 ms de bajada) hasta
+  cero exacto. Antes la rampa era lineal y una continua de pocas milésimas producía un
+  escalón audible.
+- **Limitador de picos**: desde 0,9 se comprime con `tanh` en lugar de recortar en duro
+  con `coerceIn(-1f, 1f)`, que hacía crujir las sílabas fuertes.
+- **AudioTrack con margen**: la reproducción arranca con una frase de buffer (máximo
+  700 ms de espera) y la cola sube de 4 a 6 frases, para que el motor no deje el track
+  sin datos entre frase y frase.
+- **Ritmo de lectura**: pausas más largas — 300 ms fin de frase, 340/520 ms fin de línea,
+  720 ms fin de párrafo — manteniendo el incremento por longitud de la frase.
+- **Tasa nativa**: si no llega ningún paquete de audio se declara la tasa real del modelo
+  (44100 Hz) en vez de 24000, y se registra en el log (`PCM 44100 Hz · mono · 16 bits`).
+
+Verificación: 49 tests unitarios, 0 fallos; instrumentación con 3 marcas de reproducción
+sincronizadas con el audio; WAV analizado muestra silencios de 355/326 ms y ningún salto
+en las uniones.
 
 ### 4.0-f6 — versionCode 35
 

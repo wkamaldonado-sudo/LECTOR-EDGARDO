@@ -3,9 +3,12 @@
 Lector de **EPUB, PDF y TXT** para Android con narración neuronal **sin Internet**.
 Kotlin + Jetpack Compose, sin cuentas, sin telemetría y sin permiso de red.
 
-![Versión](https://img.shields.io/badge/versi%C3%B3n-4.0--f6-brightgreen)
+![Versión](https://img.shields.io/badge/versi%C3%B3n-4.0--f7-brightgreen)
 ![Android](https://img.shields.io/badge/Android-7.0%2B%20(API%2024)-blue)
 ![ABI](https://img.shields.io/badge/ABI-arm64--v8a-informational)
+
+[**Descargar el APK (4.0-f7)**](https://github.com/wkamaldonado-sudo/LECTOR-EDGARDO/releases/download/v4.0-f7/Lector-de-Libros-4.0-f7.apk) ·
+178,9 MB · Android 7.0+ · arm64-v8a
 
 ---
 
@@ -18,7 +21,7 @@ funcionan en modo avión, sin descargas ni servicios en la nube.
 | | |
 |---|---|
 | **Paquete** | `com.antonio.lector` |
-| **Versión** | `4.0-f6` (versionCode 35) |
+| **Versión** | `4.0-f7` (versionCode 36) |
 | **Android mínimo** | 7.0 (API 24) · objetivo API 35 |
 | **Arquitectura** | `arm64-v8a` |
 | **Tamaño del APK** | ~179 MB (los modelos de voz son la mayor parte) |
@@ -57,17 +60,21 @@ funcionan en modo avión, sin descargas ni servicios en la nube.
 
 ## Instalar el APK
 
-El APK listo para usar está en `apk/`:
+**Opción 1 — desde el móvil:** abre
+<https://github.com/wkamaldonado-sudo/LECTOR-EDGARDO/releases/latest> y descarga el APK del
+Release. Es la vía recomendada, porque el archivo no vive en el árbol de Git.
+
+**Opción 2 — desde este paquete:** el APK listo para usar está en `apk/`: 
 
 ```
-apk/Lector-de-Libros-4.0-f6.apk
+apk/Lector-de-Libros-4.0-f7.apk
 ```
 
 > Este archivo pesa **178,9 MB**, por encima del límite de 100 MB por archivo de GitHub.
 > En el repositorio está ignorado a propósito: al publicar, súbelo como **asset de una
 > Release** (instrucciones en [docs/07-PUBLICAR-EN-GITHUB.md](docs/07-PUBLICAR-EN-GITHUB.md)).
-> Verificado: `versionCode 35` / `versionName 4.0-f6`,
-> SHA-256 `B175B5848539666124B79457F3F2E1FAB2B7FA3936ADEF1102DF159C0A0D3E51`.
+> Verificado: `versionCode 36` / `versionName 4.0-f7`,
+> SHA-256 `8B7D3F66ABC3ECBB0F4F8C2F5A1F6D8239B3EF7815905273E42E25C23EC4A7A8`.
 
 **Desde el teléfono:** copia el APK al móvil, ábrelo con el explorador de archivos y acepta
 «Instalar apps desconocidas» si Android lo pide.
@@ -75,7 +82,7 @@ apk/Lector-de-Libros-4.0-f6.apk
 **Por USB (conserva biblioteca y progreso):**
 
 ```powershell
-adb install -r "apk\Lector-de-Libros-4.0-f6.apk"
+adb install -r "apk\Lector-de-Libros-4.0-f7.apk"
 ```
 
 Guía detallada, requisitos y solución de problemas: [docs/02-INSTALACION.md](docs/02-INSTALACION.md).
@@ -126,7 +133,7 @@ Arquitectura y flujo de la narración: [docs/01-ARQUITECTURA.md](docs/01-ARQUITE
 | [docs/05-VOCES-Y-LICENCIAS.md](docs/05-VOCES-Y-LICENCIAS.md) | Modelos de voz y licencias de terceros |
 | [docs/06-PRIVACIDAD.md](docs/06-PRIVACIDAD.md) | Qué datos toca la app (ninguno sale del teléfono) |
 | [docs/07-PUBLICAR-EN-GITHUB.md](docs/07-PUBLICAR-EN-GITHUB.md) | Subir el proyecto y publicar el APK como Release |
-| [CHANGELOG.md](CHANGELOG.md) | Historial completo, de 1.0 a 4.0-f6 |
+| [CHANGELOG.md](CHANGELOG.md) | Historial completo, de 1.0 a 4.0-f7 |
 
 ## Privacidad
 

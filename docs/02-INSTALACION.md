@@ -8,7 +8,7 @@
 
 ## Opción 1 — desde el propio teléfono
 
-1. Copia `apk/Lector-de-Libros-4.0-f6.apk` al móvil (cable, Drive, Telegram…).
+1. Copia `apk/Lector-de-Libros-4.0-f7.apk` al móvil (cable, Drive, Telegram…).
 2. Ábrelo desde el explorador de archivos.
 3. Si Android lo pide, permite **«Instalar apps desconocidas»** para esa aplicación.
 4. Pulsa **Instalar** y luego **Abrir**.
@@ -19,7 +19,7 @@ Con **Depuración USB** activada (Ajustes → Opciones de desarrollador) y el ca
 
 ```powershell
 adb devices
-adb install -r "C:\Users\Antonio\Desktop\LECTOR EDGARDO\apk\Lector-de-Libros-4.0-f6.apk"
+adb install -r "C:\Users\Antonio\Desktop\LECTOR EDGARDO\apk\Lector-de-Libros-4.0-f7.apk"
 ```
 
 - `adb devices` debe mostrar tu móvil como `device`.
@@ -32,7 +32,7 @@ Comprobar la versión instalada:
 adb shell dumpsys package com.antonio.lector | findstr versionName
 ```
 
-Debe responder `versionName=4.0-f6`.
+Debe responder `versionName=4.0-f7`.
 
 Abrir la app:
 

@@ -8,32 +8,43 @@ viene preparado así:
 | Qué | Dónde va |
 |---|---|
 | Código, documentación y configuración | repositorio Git |
-| `apk/Lector-de-Libros-4.0-f6.apk` | **Release** de GitHub (límite 2 GB por archivo) |
+| `apk/Lector-de-Libros-4.0-f7.apk` | **Release** de GitHub (límite 2 GB por archivo) |
 
 El `.gitignore` ya excluye `apk/`, `build/`, `.gradle/`, `local.properties` y las carpetas
 pesadas de modelos descargados. Así el repositorio queda en unos pocos MB y se puede
 clonar rápido.
 
-## 1 · Crear el repositorio
+## 1 · Subir este paquete al repositorio
 
-Con [GitHub CLI](https://cli.github.com/) (recomendado):
+El repositorio ya está creado: <https://github.com/wkamaldonado-sudo/LECTOR-EDGARDO>
+
+**Vía rápida:** doble clic en `SUBIR-A-GITHUB.cmd` (en la raíz del paquete). Fija el remoto,
+hace el commit, sube `main` y publica el APK como Release. Si algo falla, se para y dice por qué.
+
+**A mano** (PowerShell, en la carpeta del paquete):
 
 ```powershell
 cd "C:\Users\Antonio\Desktop\LECTOR EDGARDO"
-git init -b main
-git add .
-git commit -m "Lector de Libros 4.0-f6: documentacion y codigo fuente"
-gh repo create lector-de-libros --public --source=. --remote=origin --push
+git remote add origin https://github.com/wkamaldonado-sudo/LECTOR-EDGARDO.git
+git add -A
+git commit -m "Lector de Libros 4.0-f7: documentacion y codigo fuente"
+git push -u origin main
 ```
 
-Sin `gh`, créalo a mano en <https://github.com/new> y luego:
+Si el repositorio ya tiene un commit (el README que GitHub crea al abrirlo), el `push` se
+rechaza por historiales distintos. Se arregla una vez:
 
 ```powershell
-git init -b main
-git add .
-git commit -m "Lector de Libros 4.0-f6"
-git remote add origin https://github.com/TU-USUARIO/lector-de-libros.git
+git fetch origin
+git merge --allow-unrelated-histories -s ours origin/main -m "Unir historial"
 git push -u origin main
+```
+
+Si `git push` pide credenciales, con GitHub CLI basta autenticarse una vez:
+
+```powershell
+gh auth login
+gh auth setup-git
 ```
 
 Si `git commit` se queja de identidad:
@@ -46,16 +57,20 @@ git config user.email "tu-correo@ejemplo.com"
 ## 2 · Publicar el APK como Release
 
 ```powershell
-gh release create v4.0-f6 `
-  "apk\Lector-de-Libros-4.0-f6.apk" `
-  --title "Lector de Libros 4.0-f6" `
-  --notes "Version estable de la serie 4.0: fluidez, marcadores, busqueda, temporizador, modo pagina, zoom, OCR local, salto de pagina narrando y caratula en segundo plano."
+cd "C:\Users\Antonio\Desktop\LECTOR EDGARDO"
+gh release create v4.0-f7 "apk\Lector-de-Libros-4.0-f7.apk" --title "Lector de Libros 4.0-f7" --notes "Version estable de la serie 4.0: fluidez, marcadores, busqueda, temporizador, modo pagina, zoom, OCR local, salto de pagina narrando y caratula en segundo plano."
+```
+
+Si el Release ya existía y hay que reemplazar el APK:
+
+```powershell
+gh release upload v4.0-f7 "apk\Lector-de-Libros-4.0-f7.apk" --clobber
 ```
 
 El enlace de descarga directa queda así:
 
 ```
-https://github.com/TU-USUARIO/lector-de-libros/releases/download/v4.0-f6/Lector-de-Libros-4.0-f6.apk
+https://github.com/wkamaldonado-sudo/LECTOR-EDGARDO/releases/download/v4.0-f7/Lector-de-Libros-4.0-f7.apk
 ```
 
 Ese es el enlace que conviene poner en el README para que la gente lo instale desde el
@@ -66,7 +81,7 @@ Attach binaries*.
 
 ```
 README.md                 presentacion y guia rapida
-CHANGELOG.md              1.0 -> 4.0-f6
+CHANGELOG.md              1.0 -> 4.0-f7
 docs/                     arquitectura, instalacion, compilacion, OCR, licencias, privacidad
 app/                      codigo fuente Kotlin + recursos + assets del modelo
 gradle/ , gradlew , gradlew.bat
@@ -82,8 +97,8 @@ build.gradle.kts , settings.gradle.kts , gradle.properties
 Puedes crear una rama o etiqueta por versión:
 
 ```powershell
-git tag -a v4.0-f6 -m "Version 4.0-f6 (versionCode 35)"
-git push origin v4.0-f6
+git tag -a v4.0-f7 -m "Version 4.0-f7 (versionCode 36)"
+git push origin v4.0-f7
 ```
 
 Los APK antiguos (1.0 → 3.8) conviene subirlos como assets de sus propias Releases, nunca
@@ -103,7 +118,7 @@ Aun así, cada versión del APK añade ~179 MB al historial: es mejor Releases.
 
 ## 6 · Checklist antes de publicar
 
-- [ ] `versionCode` / `versionName` correctos en `app/build.gradle.kts` (35 / 4.0-f6).
+- [ ] `versionCode` / `versionName` correctos en `app/build.gradle.kts` (36 / 4.0-f7).
 - [ ] `.\gradlew.bat :app:testDebugUnitTest` en verde.
 - [ ] README con el enlace de descarga del Release.
 - [ ] `docs/05-VOCES-Y-LICENCIAS.md` incluido (modelo Supertonic es OpenRAIL-M).

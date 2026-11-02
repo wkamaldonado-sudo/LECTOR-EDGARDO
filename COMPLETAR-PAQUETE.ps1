@@ -1,5 +1,5 @@
 # Prepara el paquete LECTOR EDGARDO para GitHub.
-# Copia el APK 4.0-f6 (y opcionalmente el codigo fuente) y deja el repositorio listo.
+# Copia el APK 4.0-f7 (y opcionalmente el codigo fuente) y deja el repositorio listo.
 # Uso: doble clic en COMPLETAR-PAQUETE.cmd
 
 param([switch]$ConCodigo)
@@ -10,7 +10,7 @@ $proyecto = 'C:\Users\Antonio\Documents\APK Libro\Lector de Libros'
 $apkDir   = Join-Path $proyecto 'app\build\outputs\apk\debug'
 $apkSrc   = Join-Path $apkDir 'app-debug.apk'
 $metaSrc  = Join-Path $apkDir 'output-metadata.json'
-$apkDst   = Join-Path $destino 'apk\Lector-de-Libros-4.0-f6.apk'
+$apkDst   = Join-Path $destino 'apk\Lector-de-Libros-4.0-f7.apk'
 
 function Linea($texto) { Write-Host $texto }
 
@@ -29,14 +29,14 @@ if (-not (Test-Path $apkSrc)) {
 if (Test-Path $metaSrc) {
     $meta = Get-Content $metaSrc -Raw
     if ($meta -notmatch '4\.0-f6') {
-        Linea 'AVISO: el output-metadata.json no dice 4.0-f6. Se copia igual, revisa la version.'
+        Linea 'AVISO: el output-metadata.json no dice 4.0-f7. Se copia igual, revisa la version.'
     }
 }
 
 New-Item -ItemType Directory -Force -Path (Split-Path -Parent $apkDst) | Out-Null
 Copy-Item -Path $apkSrc -Destination $apkDst -Force
 $mb = [math]::Round((Get-Item $apkDst).Length / 1MB, 1)
-Linea "OK  APK copiado -> apk\Lector-de-Libros-4.0-f6.apk ($mb MB)"
+Linea "OK  APK copiado -> apk\Lector-de-Libros-4.0-f7.apk ($mb MB)"
 
 # --- 2. Documentacion original del proyecto ------------------------------
 $docsOrig = Join-Path $destino 'docs\original'
@@ -96,9 +96,9 @@ else {
                 $correo = git config user.email
                 if (-not $correo) { git config user.email 'antonio@localhost' }
                 git add -A
-                git commit -m 'Lector de Libros 4.0-f6: documentacion y APK' | Out-Null
+                git commit -m 'Lector de Libros 4.0-f7: documentacion y APK' | Out-Null
                 Linea 'OK  repositorio git creado con el primer commit.'
-                Linea 'Siguiente paso:  gh repo create lector-de-libros --public --source=. --remote=origin --push'
+                Linea 'Siguiente paso:  ejecuta SUBIR-A-GITHUB.cmd (o sigue docs\07-PUBLICAR-EN-GITHUB.md)'
             }
             else {
                 Linea 'Repositorio git no creado. Puedes hacerlo luego con: git init -b main'
@@ -116,7 +116,8 @@ Linea '=== LISTO ==='
 Linea "Carpeta: $destino"
 Linea ''
 Linea 'Para subir a GitHub (ver docs\07-PUBLICAR-EN-GITHUB.md):'
-Linea '  git remote add origin https://github.com/TU-USUARIO/lector-de-libros.git'
-Linea '  git push -u origin main'
-Linea '  gh release create v4.0-f6 "apk\Lector-de-Libros-4.0-f6.apk" --title "4.0-f6"'
+Linea '  doble clic en SUBIR-A-GITHUB.cmd'
+Linea '  o a mano: git remote add origin https://github.com/wkamaldonado-sudo/LECTOR-EDGARDO.git'
+Linea '           git push -u origin main'
+Linea '  gh release create v4.0-f7 "apk\Lector-de-Libros-4.0-f7.apk" --title "4.0-f7"'
 Linea ''
